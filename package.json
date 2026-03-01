@@ -1,0 +1,20 @@
+{
+  "name": "mmm-valorant-banner",
+  "version": "1.0.0",
+  "description": "Display Valorant Esports matches as a scrolling banner in Magic Mirror.",
+  "main": "MMM-VALORANT-BANNER.js",
+  "repository": "https://github.com/FabienBounoir/MMM-VALORANT-BANNER",
+  "bugs": {
+    "url": "https://github.com/FabienBounoir/MMM-VALORANT-BANNER/issues"
+  },
+  "homepage": "https://github.com/FabienBounoir/MMM-VALORANT-BANNER",
+  "keywords": [
+    "magic mirror",
+    "module",
+    "esports",
+    "valorant",
+    "banner"
+  ],
+  "author": "FabienBounoir",
+  "license": "MIT"
+}

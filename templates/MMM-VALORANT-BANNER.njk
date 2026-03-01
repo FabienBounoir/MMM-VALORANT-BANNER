@@ -1,0 +1,86 @@
+<div class="mmm-valorant-banner-container">
+  {% if matches.length === 0 %}
+    <div class="mmm-valorant-empty">
+      {{ 'NO_MATCHES_FOUND' | translate }}
+    </div>
+  {% else %}
+    <div class="mmm-valorant-banner-wrapper">
+      {% set currentMatch = matches[currentMatchIndex] %}
+      
+      <div class="mmm-valorant-match">
+        <!-- Time Section -->
+        <div class="mmm-valorant-match-time">
+          <div class="mmm-valorant-match-date">
+            {{ currentMatch.displayDayOfWeek }}
+          </div>
+          {% if currentMatch.isLive %}
+            <div class="mmm-valorant-match-time-live">
+              {{ 'LIVE' | translate }}
+            </div>
+          {% else %}
+            <div class="mmm-valorant-match-time-value">
+              {{ currentMatch.displayHour }}:{{ currentMatch.displayMinute }}
+            </div>
+            {% if not config.use24HourTime %}
+              <div class="mmm-valorant-match-time-period">
+                {{ currentMatch.displayPeriod }}
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+        
+        <!-- Separator -->
+        <div class="mmm-valorant-separator"></div>
+        
+        <!-- Match Content -->
+        <div class="mmm-valorant-match-content">
+          <!-- Team 1 -->
+          <div class="mmm-valorant-team">
+            <img class="mmm-valorant-team-logo" src="{{ currentMatch.match.teams[0].image }}" alt="{{ currentMatch.match.teams[0].code }}"/>
+            {% if config.useTeamFullName %}
+              <div class="mmm-valorant-team-name">{{ currentMatch.match.teams[0].name }}</div>
+            {% else %}
+              <div class="mmm-valorant-team-code">{{ currentMatch.match.teams[0].code }}</div>
+            {% endif %}
+            {% if currentMatch.isFinished and currentMatch.match.teams[0].result %}
+              <div class="mmm-valorant-score">
+                {{ currentMatch.match.teams[0].result.gameWins }}
+              </div>
+            {% endif %}
+          </div>
+          
+          <!-- VS -->
+          <div class="mmm-valorant-vs">
+            vs
+          </div>
+          
+          <!-- Team 2 -->
+          <div class="mmm-valorant-team">
+            <img class="mmm-valorant-team-logo" src="{{ currentMatch.match.teams[1].image }}" alt="{{ currentMatch.match.teams[1].code }}"/>
+            {% if config.useTeamFullName %}
+              <div class="mmm-valorant-team-name">{{ currentMatch.match.teams[1].name }}</div>
+            {% else %}
+              <div class="mmm-valorant-team-code">{{ currentMatch.match.teams[1].code }}</div>
+            {% endif %}
+            {% if currentMatch.isFinished and currentMatch.match.teams[1].result %}
+              <div class="mmm-valorant-score">
+                {{ currentMatch.match.teams[1].result.gameWins }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <!-- Status Badge -->
+        {% if currentMatch.isLive %}
+          <div class="mmm-valorant-status-badge mmm-valorant-status-live">
+            {{ 'LIVE' | translate }}
+          </div>
+        {% elif currentMatch.isFinished %}
+          <div class="mmm-valorant-status-badge mmm-valorant-status-finished">
+            {{ 'FINISHED' | translate }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</div>
