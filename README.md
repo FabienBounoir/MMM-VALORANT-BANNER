@@ -12,6 +12,12 @@ A MagicMirror Module to display Valorant Esports matches as a continuous scrolli
 - 🌍 Multi-language support (English, Spanish, French)
 - 🎨 Minimalist design - grayscale only (white to black)
 
+## Preview
+
+![Banner Preview](banner.png)
+
+**📌 Recommended Position**: For the best visual experience, use `top_bar` or `bottom_bar` positions. The horizontal scrolling banner is designed to span the full width of your mirror.
+
 ## Installation
 
 1. Navigate to your MagicMirror modules folder:
@@ -42,7 +48,7 @@ Add the module to your `config.js`:
 ```javascript
 {
   module: "MMM-VALORANT-BANNER",
-  position: "top_center",
+  position: "top_bar",  // Recommended: top_bar or bottom_bar
   config: {
     updateInterval: 60,           // Update API data every X minutes
     apiKey: "YOUR_API_KEY_HERE",  // Get from Valorant Esports API
