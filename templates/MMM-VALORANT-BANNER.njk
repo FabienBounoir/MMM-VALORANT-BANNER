@@ -5,8 +5,8 @@
     </div>
   {% else %}
     <div class="mmm-valorant-banner-wrapper">
-      <!-- Render matches twice for seamless scrolling loop -->
-      {% for iteration in range(2) %}
+      <!-- Render matches 3 times for seamless scrolling loop without gaps -->
+      {% for iteration in range(3) %}
         {% for match in matches %}
           <div class="mmm-valorant-match">
             <!-- Match Header: Date and Time -->
@@ -38,7 +38,7 @@
           </div>
 
           <!-- Separator between matches -->
-          {% if not loop.last or iteration === 0 %}
+          {% if not loop.last or iteration < 2 %}
             <div class="mmm-valorant-separator"></div>
           {% endif %}
         {% endfor %}

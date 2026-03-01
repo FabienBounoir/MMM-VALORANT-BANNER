@@ -24,16 +24,16 @@
   align-items: center;
   height: 100%;
   white-space: nowrap;
-  animation: scroll-left 60s linear infinite;
+  animation: scroll-left 135s linear infinite;
   padding: 0 20px;
 }
 
 @keyframes scroll-left {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-66.666%);
   }
 }
 
@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  margin-right: 40px;
+  margin-right: 60px;
   gap: 30px;
 }
 
