@@ -52,6 +52,7 @@
   align-items: center;
   gap: 8px;
   font-weight: bold;
+  justify-content: center;
 }
 
 .mmm-valorant-match-date {
@@ -98,7 +99,7 @@
 }
 
 .mmm-valorant-vs {
-  font-size: 13px;
+  font-size: 18px;
   color: #bbbbbb;
   font-weight: bold;
   text-transform: lowercase;
@@ -106,7 +107,7 @@
 }
 
 .mmm-valorant-score {
-  font-size: 14px;
+  font-size: 25px;
   color: #ffffff;
   font-weight: 900;
   margin: 0 3px;
@@ -115,7 +116,7 @@
 .mmm-valorant-separator {
   width: 2px;
   height: 70px;
-  background: linear-gradient(to bottom, #555555, transparent, #555555);
+  background: #c9c9c9;
   margin: 0 0;
   flex-shrink: 0;
 }
