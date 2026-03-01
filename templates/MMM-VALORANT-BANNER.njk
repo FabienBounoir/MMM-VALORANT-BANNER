@@ -13,15 +13,18 @@
             <div class="mmm-valorant-match-header">
               <div class="mmm-valorant-match-date">{{ match.displayDayOfWeek }}</div>
               {% if match.isLive %}
-                <div class="mmm-valorant-match-time">LIVE</div>
+                <div class="mmm-valorant-match-time">🔴 LIVE</div>
               {% else %}
                 <div class="mmm-valorant-match-time">{{ match.displayHour }}:{{ match.displayMinute }}</div>
               {% endif %}
             </div>
 
-            <!-- Match Score Line -->
+            <!-- Match Score Line with Logos -->
             <div class="mmm-valorant-match-content">
-              <span class="mmm-valorant-team-code">{{ match.match.teams[0].code }}</span>
+              <div class="mmm-valorant-team-wrapper">
+                <img src="{{ match.match.teams[0].image }}" alt="{{ match.match.teams[0].code }}" class="mmm-valorant-team-logo" onerror="this.style.display='none'">
+                <span class="mmm-valorant-team-code">{{ match.match.teams[0].code }}</span>
+              </div>
               
               {% if match.isFinished and match.match.teams[0].result %}
                 <span class="mmm-valorant-score">{{ match.match.teams[0].result.gameWins }}</span>
@@ -33,7 +36,10 @@
                 <span class="mmm-valorant-score">{{ match.match.teams[1].result.gameWins }}</span>
               {% endif %}
               
-              <span class="mmm-valorant-team-code">{{ match.match.teams[1].code }}</span>
+              <div class="mmm-valorant-team-wrapper">
+                <img src="{{ match.match.teams[1].image }}" alt="{{ match.match.teams[1].code }}" class="mmm-valorant-team-logo" onerror="this.style.display='none'">
+                <span class="mmm-valorant-team-code">{{ match.match.teams[1].code }}</span>
+              </div>
             </div>
           </div>
 
