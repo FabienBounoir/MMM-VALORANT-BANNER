@@ -17,6 +17,23 @@
   align-items: center;
   padding: 0;
   margin: 0;
+  position: relative;
+  
+  /* Gradient mask pour effet fade sur les bords */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
 }
 
 .mmm-valorant-banner-wrapper {
