@@ -17,15 +17,12 @@ Module.register("MMM-VALORANT-BANNER", {
     numberOfPastGames: 2,
     use24HourTime: false,
     useTeamFullName: false,
-    scrollSpeed: 30, // seconds per match
     teamCodes: [], // Empty = all teams, or filter like ["FNC", "G2"]
   },
   // Required version of MagicMirror
   requiresVersion: "2.1.0",
   // Module properties
   matches: [],
-  currentMatchIndex: 0,
-  scrollInterval: null,
   
   // Define translations
   getTranslations: function () {
@@ -55,8 +52,7 @@ Module.register("MMM-VALORANT-BANNER", {
   getTemplateData: function () {
     return {
       config: this.config,
-      matches: this.matches,
-      currentMatchIndex: this.currentMatchIndex
+      matches: this.matches
     };
   },
   
@@ -72,26 +68,6 @@ Module.register("MMM-VALORANT-BANNER", {
     setInterval(function () {
       self.getData();
     }, self.config.updateInterval * 60 * 1000); // ms
-    
-    // Start scroll rotation
-    this.startScrolling();
-  },
-  
-  // Start automatic scrolling through matches
-  startScrolling: function () {
-    var self = this;
-    
-    // Clear existing interval if any
-    if (this.scrollInterval) {
-      clearInterval(this.scrollInterval);
-    }
-    
-    this.scrollInterval = setInterval(function () {
-      if (self.matches.length > 0) {
-        self.currentMatchIndex = (self.currentMatchIndex + 1) % self.matches.length;
-        self.updateDom(300);
-      }
-    }, self.config.scrollSpeed * 1000);
   },
   
   // Fetch data request is sent to node helper with provided parameters
@@ -155,8 +131,9 @@ Module.register("MMM-VALORANT-BANNER", {
     });
     
     // Reset scroll index if it goes out of bounds
-    if (this.currentMatchIndex >= this.matches.length) {
-      this.currentMatchIndex = 0;
+    if (this.matches.length === 0) {
+      this.updateDom(500);
+      return;
     }
     
     this.updateDom(500);
@@ -208,8 +185,6 @@ Module.register("MMM-VALORANT-BANNER", {
       case "MMM-VALORANT-BANNER-RECEIVE-DATA":
         {
           this.getSchedulesData(payload);
-          // Restart scrolling with fresh data
-          this.startScrolling();
         }
         break;
       default: {
@@ -220,8 +195,6 @@ Module.register("MMM-VALORANT-BANNER", {
   
   // Cleanup on stop
   stop: function() {
-    if (this.scrollInterval) {
-      clearInterval(this.scrollInterval);
-    }
+    // Cleanup if needed
   }
 });

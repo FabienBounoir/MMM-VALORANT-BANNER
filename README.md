@@ -1,15 +1,16 @@
 # MMM-VALORANT-BANNER
 
-A MagicMirror Module to display Valorant Esports matches as a scrolling banner.
+A MagicMirror Module to display Valorant Esports matches as a continuous scrolling ticker banner.
 
 ## Features
 
-- 📺 Displays Valorant Esports matches in a horizontal scrolling banner
-- 🔄 Automatic rotation through upcoming and past matches
-- 🏆 Shows match details: teams, logos, time, and status (LIVE/FINISHED)
+- 📺 Displays Valorant Esports matches in a horizontal scrolling ticker
+- 🔄 Continuous scroll animation - shows all matches in succession
+- 🏆 Shows match details: teams, scores, date and time
 - 🎯 Filter matches by specific team codes
-- ⚙️ Highly configurable: number of matches, scroll speed, time format, etc.
+- ⚙️ Highly configurable: number of matches, time format, etc.
 - 🌍 Multi-language support (English, Spanish, French)
+- 🎨 Minimalist design - grayscale only (white to black)
 
 ## Installation
 
@@ -32,6 +33,8 @@ git clone https://github.com/FabienBounoir/MMM-VALORANT-BANNER.git
 3. Generate an API key for the Esports API
 4. Keep your API key secure and add it to your config.js
 
+**⚠️ IMPORTANT**: Never commit your API key to version control. Always use your config.js file to provide the key.
+
 ## Configuration
 
 Add the module to your `config.js`:
@@ -48,9 +51,7 @@ Add the module to your `config.js`:
     numberOfPastGames: 2,         // Number of past matches to display
     use24HourTime: false,         // 24-hour format (true) or 12-hour (false)
     useTeamFullName: false,       // Show team full name or code
-    scrollSpeed: 30,              // Seconds per match display
     teamCodes: []                 // Filter by team codes (empty = all teams)
-                                  // Example: ["FNC", "G2", "FNATIC"]
   }
 }
 ```
@@ -60,28 +61,20 @@ Add the module to your `config.js`:
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `updateInterval` | number | 60 | Update frequency in minutes |
-| `apiKey` | string | Valorant API key | API key for esports data |
-| `leagueIds` | array | VCT EMEA | League identifiers |
+| `apiKey` | string | "" | API key for esports data (required) |
+| `leagueIds` | array | ["106109559530232966"] | League identifiers |
 | `numberOfFutureGames` | number | 10 | Maximum upcoming matches to show |
 | `numberOfPastGames` | number | 2 | Maximum past matches to show |
 | `use24HourTime` | boolean | false | Time format (24h or 12h) |
 | `useTeamFullName` | boolean | false | Display full team name instead of code |
-| `scrollSpeed` | number | 30 | Seconds each match is displayed |
 | `teamCodes` | array | [] | Filter by team codes (empty = all teams) |
 
 ## Usage Examples
 
-### Show only Gentlemate and Karmine Corp matches:
+### Show only FNC and G2 matches:
 ```javascript
 config: {
-  teamCodes: ["M8", "KC"]
-}
-```
-
-### Change scroll speed to 20 seconds per match:
-```javascript
-config: {
-  scrollSpeed: 20
+  teamCodes: ["FNC", "G2"]
 }
 ```
 
@@ -100,26 +93,29 @@ This module uses the official Valorant Esports API:
 - **Default League**: VCT EMEA (ID: 106109559530232966)
 
 Other available leagues:
-- VCT EMEA: [See documentation]
-- VCT Pacific: [See documentation]
+- VCT Americas: `109974795266458277`
+- VCT Pacific: `109976391920118180`
 
 ## Display Format
 
-The banner shows one match at a time in this layout:
+The banner displays matches in a continuous horizontal scroll:
 
 ```
-[Day] | [Team1 Logo] Team1 vs Team2 [Team2 Logo] | [Status]
-      | [HH:MM]      [Code]        [Code]
+Mon 14:30 | FNC 2 vs 1 G2 | Tue 19:00 | KC vs M8 | ...
 ```
+
+Format per match:
+- **Line 1**: Day and Time (or "LIVE" if match is ongoing)
+- **Line 2**: Team1 CODE [score] vs [score] Team2 CODE
 
 ## Styling
 
-The module includes a dark Valorant-themed design with:
-- Pink accent color (#ff0484)
-- Dark background gradient
-- Responsive logo sizing
-- LIVE indicator with animation
-- Finished match badge
+The module uses a minimalist Magic Mirror design:
+- Grayscale only (white, light gray, dark gray, black)
+- No colored borders or backgrounds
+- Transparent background
+- Horizontal scroll animation
+- Suitable for all Magic Mirror themes
 
 ## Languages
 
@@ -140,4 +136,3 @@ FabienBounoir
 
 - Valorant Esports API
 - MagicMirror Project
-- Original concept inspired by other esports modules
